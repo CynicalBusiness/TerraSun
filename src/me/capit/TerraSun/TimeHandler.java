@@ -32,6 +32,7 @@ public class TimeHandler implements Runnable {
 		zone = zone/100;
 		hour = hour-zone; // Get GMT time.
 		hour = hour+plugin.offset; // Move by offset.
+		hour = hour>23 ? hour-=24 : hour;
 		ticks = hour*1000;
 		long rminute = Math.round((minute/60)*100);
 		ticks += rminute;
