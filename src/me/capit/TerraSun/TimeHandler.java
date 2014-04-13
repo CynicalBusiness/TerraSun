@@ -35,7 +35,6 @@ public class TimeHandler implements Runnable {
 		hour--; // Seems to overshoot by one.
 		ticks = hour*1000;
 		long rminute = Math.round((minute/60)*100);
-		plugin.getLogger().info("Minutes: "+minute+" "+rminute);
 		ticks += rminute;
 		plugin.hour = hour;
 		plugin.minute = Math.round(minute);
