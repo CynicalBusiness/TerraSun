@@ -23,9 +23,12 @@ public class CommandHandler implements CommandExecutor{
 		if (cmd.getName().equalsIgnoreCase("gettime")){
 			if (args.length==0){
 				if (s.hasPermission("terrasun.gettime")){
-					char spacer = plugin.offset<0 ? null : '+';
-					s.sendMessage("The time is currently "+plugin.hour+":"+plugin.minute+". (GMT"+spacer
-							+plugin.offset+")");
+					char spacer = plugin.offset<0 ? '-' : '+';
+					String minz = plugin.minute<10 ? "0" : "";
+					String hourz = plugin.hour<10 ? "0" : "";
+					s.sendMessage("The time is currently "+hourz+plugin.hour+":"+minz+plugin.minute+
+							". (GMT"+spacer+Math.abs(plugin.offset)+", "+plugin.ticks+" ticks)");
+					return true;
 				} else {
 					s.sendMessage(ChatColor.RED + "You don't have permission for that!");
 					return true;
@@ -41,7 +44,9 @@ public class CommandHandler implements CommandExecutor{
 					if (loffset<14 && loffset>-12){
 						plugin.offset = loffset;
 						plugin.getConfig().set("config.GMT_OFFSET", loffset);
+						plugin.saveConfig();
 						s.sendMessage("Successfully set offset to "+loffset+".");
+						return true;
 					} else {
 						s.sendMessage(ChatColor.RED + "Not a valid offset! (Must be between -12 and 14!");
 					}

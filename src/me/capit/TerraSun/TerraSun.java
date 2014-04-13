@@ -6,22 +6,26 @@ import org.bukkit.scheduler.BukkitScheduler;
 
 public class TerraSun extends JavaPlugin {
 
-	public int offset = this.getConfig().getInt("config.GMT_OFFSET");
+	public int offset;
 	public volatile int hour;
-	public volatile int minute;
+	public volatile long minute;
+	public volatile int ticks;
 	
 	public boolean enabled = false;
 	
 	@Override
 	public void onEnable(){
 		enabled = true;
+		
+		offset = this.getConfig().getInt("config.GMT_OFFSET");
+		
 		CommandHandler cmdh = new CommandHandler(this);
 		this.getCommand("gettime").setExecutor(cmdh);
 		this.getCommand("setoffset").setExecutor(cmdh);
 		
 		TimeHandler timer = new TimeHandler(this);
 		BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
-        scheduler.scheduleSyncRepeatingTask(this, timer, 0L, 20L);
+        scheduler.scheduleSyncRepeatingTask(this, timer, 0L, 200L);
 		
 		saveDefaultConfig();
 	}
