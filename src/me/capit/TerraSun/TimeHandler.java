@@ -35,6 +35,7 @@ public class TimeHandler implements Runnable {
 		hour = hour>23 ? hour-=24 : hour;
 		hour = hour<0 ? hour+=24 : hour;
 		ticks = hour*1000;
+		ticks = ticks - 6000;
 		long rminute = Math.round((minute/60)*100);
 		ticks += rminute;
 		plugin.hour = hour;
