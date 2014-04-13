@@ -1,5 +1,5 @@
 name: TerraSun
-version: 1.00.00
+version: 1.00.01
 main: me.capit.TerraSun.TerraSun
 
 website: https://github.com/Wehttam664/TerraSun/wiki
@@ -13,10 +13,10 @@ commands:
     permission: terrasun.gettime
     usage: gettime
   setoffset:
-    description: 'Sets the server's GMT offset.'
+    description: 'Sets the server''s GMT offset.'
     permission: terrasun.setoffset
     usage: setoffset <offset>
- 
+
 permissions:
   terrasun.gettime:
     default: true
