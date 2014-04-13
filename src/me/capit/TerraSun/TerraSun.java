@@ -25,7 +25,7 @@ public class TerraSun extends JavaPlugin {
 		
 		TimeHandler timer = new TimeHandler(this);
 		BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
-        scheduler.scheduleSyncRepeatingTask(this, timer, 0L, 200L);
+        scheduler.scheduleSyncRepeatingTask(this, timer, 0L, 20L);
 		
 		saveDefaultConfig();
 	}
