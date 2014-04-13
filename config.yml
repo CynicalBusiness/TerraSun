@@ -1,2 +1,3 @@
 config:
   GMT_OFFSET: -8
+  RAIN_CHANCE: 0.25

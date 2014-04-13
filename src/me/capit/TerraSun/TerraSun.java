@@ -13,6 +13,8 @@ public class TerraSun extends JavaPlugin {
 	
 	public boolean enabled = false;
 	
+	public WeatherEventHandler weh;
+	
 	@Override
 	public void onEnable(){
 		enabled = true;
@@ -22,6 +24,9 @@ public class TerraSun extends JavaPlugin {
 		CommandHandler cmdh = new CommandHandler(this);
 		this.getCommand("gettime").setExecutor(cmdh);
 		this.getCommand("setoffset").setExecutor(cmdh);
+		
+		weh = new WeatherEventHandler(this);
+		this.getServer().getPluginManager().registerEvents(weh, this);
 		
 		TimeHandler timer = new TimeHandler(this);
 		BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
