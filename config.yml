@@ -1,3 +1,9 @@
+# TerraSun configuration file.
+# Please view the wiki on GitHub for configuration.
+# https://github.com/Wehttam664/Organizations/wiki/Configuring-Crytarian-Plug-ins#terrasun
+
 config:
-  GMT_OFFSET: -8
+  DO_TIME: TRUE
+  DO_WEATHER: TRUE
+  GMT_OFFSET: 0
   RAIN_CHANCE: 0.25

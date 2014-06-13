@@ -16,7 +16,8 @@ public class WeatherEventHandler implements Listener {
 	public void onWheatherChange(WeatherChangeEvent e){
 		double chance = Math.random();
 		double rainChance = plugin.getConfig().getDouble("config.RAIN_CHANCE");
-		if (chance>rainChance){
+		boolean doweather = plugin.getConfig().getBoolean("config.DO_WEATHER");
+		if (chance>rainChance && doweather){
 			e.setCancelled(true);
 		}
 	}

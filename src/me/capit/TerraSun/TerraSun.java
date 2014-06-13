@@ -7,8 +7,7 @@ import org.bukkit.scheduler.BukkitScheduler;
 public class TerraSun extends JavaPlugin {
 
 	public int offset;
-	public volatile int hour;
-	public volatile long minute;
+	public volatile int hour, minute, second;
 	public volatile int ticks;
 	
 	public boolean enabled = false;
@@ -19,8 +18,15 @@ public class TerraSun extends JavaPlugin {
 	public void onEnable(){
 		enabled = true;
 		
+		getLogger().info("#==========================================================#");
+		getLogger().info("                   Starting TerraSun...");
+		
+		getLogger().info("Reading data...");
+		saveDefaultConfig();
 		offset = this.getConfig().getInt("config.GMT_OFFSET");
 		
+		getLogger().info("Data OK!");
+		getLogger().info("Registering command and events...");
 		CommandHandler cmdh = new CommandHandler(this);
 		this.getCommand("gettime").setExecutor(cmdh);
 		this.getCommand("setoffset").setExecutor(cmdh);
@@ -32,7 +38,8 @@ public class TerraSun extends JavaPlugin {
 		BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
         scheduler.scheduleSyncRepeatingTask(this, timer, 0L, 20L);
 		
-		saveDefaultConfig();
+        getLogger().info("Registry OK!");
+        getLogger().info("#==========================================================#");
 	}
 	
 	@Override

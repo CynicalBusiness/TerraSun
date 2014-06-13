@@ -23,11 +23,12 @@ public class CommandHandler implements CommandExecutor{
 		if (cmd.getName().equalsIgnoreCase("gettime")){
 			if (args.length==0){
 				if (s.hasPermission("terrasun.gettime")){
-					char spacer = plugin.offset<0 ? '-' : '+';
+					char spacer = plugin.offset>0 ? '+' : '-';
 					String minz = plugin.minute<10 ? "0" : "";
 					String hourz = plugin.hour<10 ? "0" : "";
+					String secz = plugin.second<10 ? "0" : "";
 					s.sendMessage("The time is currently "+hourz+plugin.hour+":"+minz+plugin.minute+
-							". (GMT"+spacer+Math.abs(plugin.offset)+", "+plugin.ticks+" ticks)");
+							":"+secz+plugin.second+". (GMT"+spacer+Math.abs(plugin.offset)+", "+plugin.ticks+" ticks)");
 					return true;
 				} else {
 					s.sendMessage(ChatColor.RED + "You don't have permission for that!");
