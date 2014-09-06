@@ -1,5 +1,7 @@
 package me.capit.TerraSun;
 
+import java.util.logging.Logger;
+
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
@@ -13,33 +15,41 @@ public class TerraSun extends JavaPlugin {
 	public boolean enabled = false;
 	
 	public WeatherEventHandler weh;
+	public Logger log;
 	
 	@Override
 	public void onEnable(){
 		enabled = true;
+		log = this.getLogger();
 		
-		getLogger().info("#==========================================================#");
-		getLogger().info("                   Starting TerraSun...");
+		log.info("#=================================================#");
+		log.info("            World of Crytaria - TerraSun");
+		log.info("Starting plugin...");
 		
-		getLogger().info("Reading data...");
+		log.info("  Reading file data...");
 		saveDefaultConfig();
 		offset = this.getConfig().getInt("config.GMT_OFFSET");
+		log.info("  File data OK!");
 		
-		getLogger().info("Data OK!");
-		getLogger().info("Registering command and events...");
+		log.info("  Registering commands...");
 		CommandHandler cmdh = new CommandHandler(this);
 		this.getCommand("gettime").setExecutor(cmdh);
+		log.info("    Registered command /GETTIME");
 		this.getCommand("setoffset").setExecutor(cmdh);
+		log.info("    Registered command /SETOFFSET");
+		log.info("  Commands OK!");
 		
+		log.info("  Registering events...");
 		weh = new WeatherEventHandler(this);
 		this.getServer().getPluginManager().registerEvents(weh, this);
 		
 		TimeHandler timer = new TimeHandler(this);
 		BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
         scheduler.scheduleSyncRepeatingTask(this, timer, 0L, 20L);
+        log.info("  Events OK!");
 		
-        getLogger().info("Registry OK!");
-        getLogger().info("#==========================================================#");
+        log.info("TerraSun ready! Plugin OK!");
+        log.info("#=================================================#");
 	}
 	
 	@Override
